@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayini Home Products - Login</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #60ad5e;
+            --primary-dark: #005005;
+            --secondary-color: #ff8f00;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--secondary-color);
+            background-color: var(--white);
+            padding: 2px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .user-actions a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 0 5px;
+            font-size: 12px;
+        }
+        
+        nav {
+            background-color: var(--white);
+            padding: 0 5%;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            position: relative;
+        }
+        
+        .nav-menu li a {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-menu li a:hover {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+        }
+        
+        /* Login Form Styles */
+        .login-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 150px);
+            padding: 40px 20px;
+        }
+        
+        .login-container {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 900px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .login-image {
+            flex: 1;
+            background-color: var(--primary-light);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .login-image h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .login-image p {
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .login-form {
+            flex: 1;
+            padding: 40px;
+        }
+        
+        .login-form h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 8px;
+        }
+        
+        .forgot-password {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .forgot-password:hover {
+            color: var(--primary-dark);
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-login:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .or-divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .or-divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 45%;
+            height: 1px;
+            background-color: var(--medium-gray);
+        }
+        
+        .or-divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 45%;
+            height: 1px;
+            background-color: var(--medium-gray);
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .social-btn {
+            padding: 10px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 5px;
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .social-btn:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+        }
+        
+        .register-link a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .register-link a:hover {
+            color: var(--primary-dark);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: #14191f;
+            color: white;
+            padding: 60px 5% 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2a3441;
+            font-size: 14px;
+            color: #999;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+            
+            .login-image {
+                padding: 30px;
+            }
+            
+            .login-form {
+                padding: 30px;
+            }
+            
+            .social-login {
+                flex-direction: column;
+            }
+            
+            .logo {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/Sanjay123ps/ayini-website/main/AYINI.png" alt="Ayini Home Products Logo" class="logo-img" style="background: transparent;">
+                <h1>Ayini Home <span>Products</span></h1>
+            </div>
+            <div class="user-actions">
+                <a href="#">Login / Register</a>
+                <a href="#" class="cart-icon">Cart <span class="cart-count">0</span></a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="https://sanjay123ps.github.io/ayini-website/web.html">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="javascript:void(0)">Categories</a>
+                    </li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <div class="login-image">
+                <img src="https://raw.githubusercontent.com/Sanjay123ps/ayini-website/main/AYINI.png" alt="Ayini Home Products Logo" style="width: 250px; margin-bottom: 30px;">
+                <h2>Welcome to Ayini Home Products</h2>
+                <p>Login to access your account, track orders, and enjoy a personalized shopping experience with premium organic food products.</p>
+            </div>
+            <div class="login-form">
+                <h2>Sign In</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="remember-forgot">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn-login">Login</button>
+                    <div class="or-divider">OR</div>
+                    <div class="social-login">
+                        <a href="https://accounts.google.com/servicelogin?hl=en-gb"><button type="button" class="social-btn">
+                            <span>G</span> Continue with Google
+                        </button></a>
+                        <button type="button" class="social-btn">
+                            <span>f</span> Continue with Facebook
+                        </button>
+                    </div>
+                    <div class="register-link">
+                        <p>Don't have an account? <a href="https://sanjay123ps.github.io/ayini-website/signup.html">Sign Up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="copyright">
+            <p>&copy; 2025 Ayini Home Products. All Rights Reserved.</p>
+            <p style="margin-top: 5px;">PeriyanaickenPalayam, Coimbatore | Phone: (+91) 7397130039</p>
+        </div>
+    </footer>
+</body>
+</html>
