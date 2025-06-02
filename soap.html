@@ -45,6 +45,30 @@
             background-color: var(--primary-color);
             color: var(--white);
         }
+        .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image fills the circular area */
+    border: 2px solid var(--secondary-color); /* Optional: adds a border around the logo */
+    background-color: var(--white); /* Optional: background color */
+    padding: 2px; /* Optional: adds some space between the image and border */
+}
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
         
         .logo h1 {
             font-size: 24px;
@@ -340,6 +364,49 @@
         .footer-links li {
             margin-bottom: 10px;
         }
+        .social-links {
+            margin-top: 40px;
+        }
+        
+        .social-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 24px;
+        }
+        
+        .social-icon.instagram {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        }
+        
+        .social-icon.facebook {
+            background-color: #1877f2;
+        }
+        
+        .social-icon.whatsapp {
+            background-color: #25d366;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
         
         .footer-links a {
             color: #ccc;
@@ -370,6 +437,18 @@
             border-top: 1px solid #555;
             font-size: 14px;
         }
+                /* Responsive Styles */
+                @media (max-width: 768px) {
+    .logo {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .logo-img {
+        width: 40px;
+        height: 40px;
+    }
+}
         
         /* Responsive Styles */
         @media (max-width: 992px) {
@@ -422,7 +501,7 @@
                 <button>Search</button>
             </div>
             <div class="user-actions">
-                <a href="#">Login / Register</a>
+                <a href="https://sanjay123ps.github.io/ayini-website/login.html">Login / Register</a>
                 <a href="#" class="cart-icon">Cart <span class="cart-count">0</span></a>
             </div>
         </div>
@@ -442,7 +521,7 @@
                                 </ul>
                             </li>
                             <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact</a></li>
+                             <li><a href="https://sanjay123ps.github.io/ayini-website/contactus.html">Contact</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -569,7 +648,7 @@
                 </div>
                 <div class="product-info">
                     <p class="product-category">Hair Care</p>
-                    <h3 class="product-title">Herbal Oil (100g)</h3>
+                    <h3 class="product-title">Herbal Oil (100ml)</h3>
                     <p class="product-price">₹75</p>
                     <div class="product-rating">★★★★★</div>
                     <a href="https://wa.me/message/TFCLRA35NEGIL1" ><button class="add-to-cart">Buy Now</button></a>
@@ -669,20 +748,23 @@
             <h1 style="font-size: 38px; margin-bottom: 20px; font-weight: 700;">Get in Touch</h1>
             <p style="margin-bottom: 25px; line-height: 1.6; color: #e0e0e0;">Your trusted source for premium organic masalas and spices delivered straight to your door.</p>
             
-            <div class="social-icons" style="display: flex; gap: 15px; margin-top: 30px;">
-                <a href="#" style="display: inline-block; width: 40px; height: 40px; background-color: #1e2730; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #f0d78c; text-decoration: none; transition: transform 0.3s;">
-                    <i class="fab fa-instagram" style="font-size: 20px;">◉</i>
-                </a>
-                <a href="#" style="display: inline-block; width: 40px; height: 40px; background-color: #1e2730; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #f0d78c; text-decoration: none; transition: transform 0.3s;">
-                    <i class="fab fa-linkedin-in" style="font-size: 20px;">▣</i>
-                </a>
-                <a href="#" style="display: inline-block; width: 40px; height: 40px; background-color: #1e2730; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #f0d78c; text-decoration: none; transition: transform 0.3s;">
-                    <i class="fab fa-pinterest" style="font-size: 20px;">◎</i>
-                </a>
-                <a href="#" style="display: inline-block; width: 40px; height: 40px; background-color: #1e2730; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #f0d78c; text-decoration: none; transition: transform 0.3s;">
-                    <i class="fab fa-twitter" style="font-size: 20px;">♦</i>
-                </a>
-            </div>
+            <div class="social-icons">
+                    <a href="https://www.instagram.com/ayini_home_products/?hl=en" class="social-icon instagram" target="_blank" title="Follow us on Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61573521272015 " class="social-icon facebook" target="_blank" title="Like us on Facebook">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/917397130039" class="social-icon whatsapp" target="_blank" title="Chat with us on WhatsApp">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.570-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/>
+                        </svg>
+                    </a>
+                </div>
         </div>
         
         <div class="footer-contact" style="background-color: #1e2730; padding: 30px; border-radius: 10px;">
@@ -718,6 +800,17 @@
                     <li style="margin-bottom: 12px;"><a href="#" style="color: #e0e0e0; text-decoration: none; transition: color 0.3s;">Contact</a></li>
                 </ul>
             </div>
+            
+            <div>
+                <h3 style="font-size: 18px; margin-bottom: 20px; position: relative; color: #f0d78c;">Customer Service</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #e0e0e0; text-decoration: none; transition: color 0.3s;">My Account</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #e0e0e0; text-decoration: none; transition: color 0.3s;">Order Tracking</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #e0e0e0; text-decoration: none; transition: color 0.3s;">Shipping Policy</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #e0e0e0; text-decoration: none; transition: color 0.3s;">Returns & Refunds</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #e0e0e0; text-decoration: none; transition: color 0.3s;">Privacy Policy</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     
@@ -749,6 +842,458 @@
                 }, 1000);
             });
         });
+         // Product data
+const products = [
+    {
+        category: "Soap",
+        title: "Nalangu Maavu ",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+    {
+        category: "Soap",
+        title: "Kattralai",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+    {
+        category: "Soap",
+        title: "Kuppaimeni",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+    {
+        category: "Soap",
+        title: "Neem",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+    {
+        category: "Soap",
+        title: "Kasthuri Manjal",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+    {
+        category: "Soap",
+        title: "Sandal",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+    {
+        category: "Hair Care",
+        title: "Seeyarkkai",  
+        price: "₹190",
+        rating: "★★★★★",
+        size: "500g"
+    },
+    {
+        category: "Hair Care",
+        title: "Herbal Oil",
+        price: "₹75",
+        rating: "★★★★★",
+        size: "100ml"
+    },
+    {
+        category: "Soap",
+        title: "Tulsi",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+     {
+        category: "Hair Care ",
+        title: "Arrapu Sampoo Bar",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+     {
+        category: "Soap",
+        title: "Sandal Leaf Soap",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+     {
+        category: "Soap",
+        title: "Multhanimetti",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+    {
+        category: "Soap",
+        title: "Vettiver",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+    {
+        category: "Hair Care",
+        title: "Soapnut Sampoo Bar",
+        price: "₹70",
+        rating: "★★★★★",
+    },
+];
+
+function createProductCard(product, highlight = '') {
+    let title = product.title;
+    
+    // Highlight the search term in the title if provided
+    if (highlight && title.toLowerCase().includes(highlight.toLowerCase())) {
+        const regex = new RegExp(`(${highlight})`, 'gi');
+        title = title.replace(regex, '<span class="highlight">$1</span>');
+    }
+    
+    return `
+        <div class="product-card">
+            <div class="product-img">
+                <img src="/api/placeholder/250/200" alt="${product.title}">
+            </div>
+            <div class="product-info">
+                <p class="product-category">${product.category}</p>
+                <h3 class="product-title">${title} </h3>
+                <p class="product-price">${product.price}</p>
+                <div class="product-rating">${product.rating}</div>
+                <a href="https://wa.me/message/TFCLRA35NEGIL1"><button class="add-to-cart">Buy Now</button></a>
+            </div>
+        </div>
+    `;
+}
+
+// Function to create dropdown item HTML
+function createDropdownItem(product, highlight = '') {
+    let title = product.title;
+    
+    // Highlight the search term in the title if provided
+    if (highlight && title.toLowerCase().includes(highlight.toLowerCase())) {
+        const regex = new RegExp(`(${highlight})`, 'gi');
+        title = title.replace(regex, '<span class="highlight">$1</span>');
+    }
+    
+    return `
+        <div class="dropdown-item" data-title="${product.title}">
+            <div class="dropdown-product-info">
+                <div class="dropdown-product-img">
+                    <img src="/api/placeholder/50/50" alt="${product.title}">
+                </div>
+                <div class="dropdown-product-details">
+                    <h4>${title} (${product.size})</h4>
+                    <p>${product.price}</p>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Function to render all products
+function renderAllProducts() {
+    const productGrid = document.querySelector('.product-grid');
+    if (!productGrid) return;
+    
+    let productsHTML = '';
+    
+    products.forEach(product => {
+        productsHTML += createProductCard(product);
+    });
+    
+    productGrid.innerHTML = productsHTML;
+    attachCartEvents();
+}
+
+// Function to create and append dropdown to the search bar
+function createSearchDropdown() {
+    const searchBar = document.querySelector('.search-bar');
+    if (!searchBar) return;
+    
+    // Check if dropdown already exists
+    if (!document.getElementById('dropdownResults')) {
+        // Create dropdown container
+        const dropdownResults = document.createElement('div');
+        dropdownResults.id = 'dropdownResults';
+        dropdownResults.className = 'dropdown-results';
+        
+        // Add some styles to the dropdown
+        dropdownResults.style.position = 'absolute';
+        dropdownResults.style.top = '100%';
+        dropdownResults.style.left = '0';
+        dropdownResults.style.width = '100%';
+        dropdownResults.style.maxHeight = '300px';
+        dropdownResults.style.overflowY = 'auto';
+        dropdownResults.style.backgroundColor = 'white';
+        dropdownResults.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+        dropdownResults.style.zIndex = '1000';
+        dropdownResults.style.borderRadius = '0 0 4px 4px';
+        dropdownResults.style.display = 'none';
+        dropdownResults.style.border = '1px solid #ddd';
+        dropdownResults.style.borderTop = 'none';
+        
+        // Add the dropdown to the search bar
+        searchBar.style.position = 'relative';
+        searchBar.appendChild(dropdownResults);
+    }
+}
+
+// Function to populate dropdown with filtered products
+function populateDropdown(searchTerm = '') {
+    const dropdownResults = document.getElementById('dropdownResults');
+    if (!dropdownResults) return;
+    
+    let dropdownHTML = '';
+    let filteredProducts = products;
+    
+    // Filter products if search term provided
+    if (searchTerm) {
+        filteredProducts = products.filter(product => 
+            product.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+            product.category.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }
+    
+    // Create dropdown items for filtered products
+    filteredProducts.forEach(product => {
+        dropdownHTML += createDropdownItem(product, searchTerm);
+    });
+    
+    // If no matches found, show a message
+    if (filteredProducts.length === 0) {
+        dropdownHTML = '<div class="dropdown-item no-results-item">No products found matching "' + searchTerm + '"</div>';
+    }
+    
+    dropdownResults.innerHTML = dropdownHTML;
+    
+    // Attach click events to dropdown items
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const productTitle = item.getAttribute('data-title');
+            if (productTitle) {
+                const searchInput = document.querySelector('.search-bar input');
+                if (searchInput) {
+                    searchInput.value = productTitle;
+                }
+                searchProducts(productTitle);
+                hideDropdown();
+            }
+        });
+    });
+}
+
+// Function to filter products by search term
+function searchProducts(searchTerm) {
+    const productGrid = document.querySelector('.product-grid');
+    if (!productGrid) return;
+    
+    let productsHTML = '';
+    let matchFound = false;
+    
+    products.forEach(product => {
+        // Check if product title or category contains the search term
+        if (product.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+            product.category.toLowerCase().includes(searchTerm.toLowerCase())) {
+            productsHTML += createProductCard(product, searchTerm);
+            matchFound = true;
+        }
+    });
+    
+    // If no matches found, show a message
+    if (!matchFound) {
+        productsHTML = '<div class="no-results" style="grid-column: 1/-1; text-align: center; padding: 20px;">No products found matching "' + searchTerm + '". Please try a different search term.</div>';
+    }
+    
+    productGrid.innerHTML = productsHTML;
+    attachCartEvents();
+}
+
+// Function to attach cart events to buttons
+function attachCartEvents() {
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    const cartCount = document.querySelector('.cart-count');
+    if (!cartCount) return;
+    
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            // Don't prevent default as we want the WhatsApp link to work
+            
+            // Update cart count
+            let currentCount = parseInt(cartCount.textContent);
+            currentCount++;
+            cartCount.textContent = currentCount;
+            
+            // Animation effect
+            button.textContent = 'Added!';
+            button.style.backgroundColor = '#60ad5e';
+            
+            setTimeout(() => {
+                button.textContent = 'Buy Now';
+                button.style.backgroundColor = '';
+            }, 1000);
+        });
+    });
+}
+
+// Function to show dropdown
+function showDropdown() {
+    const dropdownResults = document.getElementById('dropdownResults');
+    if (dropdownResults) {
+        dropdownResults.style.display = 'block';
+    }
+}
+
+// Function to hide dropdown
+function hideDropdown() {
+    const dropdownResults = document.getElementById('dropdownResults');
+    if (dropdownResults) {
+        dropdownResults.style.display = 'none';
+    }
+}
+
+// Initialize page with all products and set up search functionality
+document.addEventListener('DOMContentLoaded', () => {
+    // Create the dropdown for search results
+    createSearchDropdown();
+    
+    // Initialize products
+    renderAllProducts();
+    
+    // Set up search functionality
+    const searchInput = document.querySelector('.search-bar input');
+    const searchButton = document.querySelector('.search-bar button');
+    
+    if (searchInput && searchButton) {
+        // Show dropdown when search input is focused
+        searchInput.addEventListener('focus', () => {
+            populateDropdown();
+            showDropdown();
+        });
+        
+        // Filter dropdown results as user types
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.trim();
+            populateDropdown(searchTerm);
+            showDropdown();
+        });
+        
+        // Search on button click
+        searchButton.addEventListener('click', () => {
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm) {
+                searchProducts(searchTerm);
+            } else {
+                renderAllProducts();
+            }
+            hideDropdown();
+        });
+        
+        // Search on Enter key press
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    searchProducts(searchTerm);
+                } else {
+                    renderAllProducts();
+                }
+                hideDropdown();
+            }
+        });
+    }
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        const dropdownResults = document.getElementById('dropdownResults');
+        const searchInput = document.querySelector('.search-bar input');
+        
+        if (dropdownResults && searchInput && 
+            !searchInput.contains(e.target) && 
+            !dropdownResults.contains(e.target)) {
+            hideDropdown();
+        }
+    });
+    
+    // Add styles for the highlight class and dropdown items
+    const style = document.createElement('style');
+    style.textContent = `
+        .highlight {
+            background-color: #ffeb3b;
+            font-weight: bold;
+        }
+        
+        .dropdown-item {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s ease;
+            overflow: hidden;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-product-info {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .dropdown-product-img {
+            flex-shrink: 0;
+            margin-right: 12px;
+            width: 50px;
+            height: 50px;
+        }
+        
+        .dropdown-product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .dropdown-product-details {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+        
+        .dropdown-product-details h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.3;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        .dropdown-product-details p {
+            margin: 4px 0 0;
+            color: #2e7d32;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        .no-results {
+            color: #ff6b6b;
+            font-style: italic;
+        }
+        
+        .no-results-item {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            cursor: default;
+        }
+        
+        .no-results-item:hover {
+            background-color: transparent;
+        }
+    `;
+    document.head.appendChild(style);
+});
     </script>
 </body>
 </html>
