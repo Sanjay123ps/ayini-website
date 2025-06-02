@@ -164,6 +164,10 @@
             position: relative;
         }
         
+        .password-container input {
+            padding-right: 60px !important;
+        }
+        
         .toggle-password {
             position: absolute;
             right: 15px;
@@ -171,12 +175,134 @@
             transform: translateY(-50%);
             cursor: pointer;
             color: #777;
+            user-select: none;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 10;
+            padding: 5px;
+            background: transparent;
+            border: none;
         }
         
-        .password-requirements {
+        .toggle-password:hover {
+            color: var(--primary-color);
+        }
+
+        /* Password Strength Styles */
+        .strength-indicator {
             margin-top: 8px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .strength-indicator.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .strength-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 3px;
+            position: relative;
+        }
+        
+        .strength-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .strength-fill.weak {
+            background: linear-gradient(90deg, #ff4444, #ff6666);
+        }
+        
+        .strength-fill.moderate {
+            background: linear-gradient(90deg, #ffaa00, #ffcc44);
+        }
+        
+        .strength-fill.strong {
+            background: linear-gradient(90deg, #00aa44, #44cc66);
+        }
+        
+        .strength-fill.very-strong {
+            background: linear-gradient(90deg, #006622, #228844);
+        }
+        
+        .strength-text {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .strength-text.weak { color: #ff4444; }
+        .strength-text.moderate { color: #ffaa00; }
+        .strength-text.strong { color: #00aa44; }
+        .strength-text.very-strong { color: #006622; }
+        
+        .strength-icon {
             font-size: 14px;
-            color: #666;
+        }
+        
+        .requirements {
+            margin-top: 10px;
+            font-size: 11px;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        
+        .requirements.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .requirement {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .requirement.met {
+            color: #00aa44;
+        }
+        
+        .requirement.unmet {
+            color: #999;
+        }
+        
+        .requirement-icon {
+            font-size: 10px;
+            width: 12px;
+            text-align: center;
         }
         
         .submit-btn {
@@ -211,24 +337,6 @@
             text-decoration: underline;
         }
         
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .logo {
-                flex-direction: column;
-                gap: 5px;
-            }
-            
-            .logo-img {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .signup-container {
-                margin: 30px 20px;
-                padding: 30px 20px;
-            }
-        }
-        
         /* Error message styles */
         .error-message {
             color: #d32f2f;
@@ -255,19 +363,30 @@
             padding: 60px 5% 20px;
         }
         
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
         .copyright {
             text-align: center;
             padding-top: 20px;
             border-top: 1px solid #2a3441;
             font-size: 14px;
             color: #999;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .logo {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .signup-container {
+                margin: 30px 20px;
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
@@ -288,9 +407,6 @@
             <div class="container">
                 <ul class="nav-menu">
                     <li><a href="https://sanjay123ps.github.io/ayini-website/web.html">Home</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
                 </ul>
             </div>
         </nav>
@@ -324,11 +440,34 @@
                 <label for="password">Password</label>
                 <div class="password-container">
                     <input type="password" id="password" name="password" required>
-                    <span class="toggle-password" id="togglePassword">Show</span>
-                </div>
-                <div class="error-message" id="passwordError">Password must be at least 8 characters</div>
-                <div class="password-requirements">
-                    Password should be at least 8 characters and include uppercase, lowercase, number, and special character
+                    <button type="button" class="toggle-password" id="togglePassword">Show</button>
+                    <div class="strength-indicator" id="strengthIndicator">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <div class="strength-text" id="strengthText">
+                            <span class="strength-icon" id="strengthIcon">🔒</span>
+                            <span id="strengthLabel">Enter password</span>
+                        </div>
+                        <div class="requirements" id="requirements">
+                            <div class="requirement" id="req-length">
+                                <span class="requirement-icon">○</span>
+                                <span>At least 8 characters</span>
+                            </div>
+                            <div class="requirement" id="req-uppercase">
+                                <span class="requirement-icon">○</span>
+                                <span>One uppercase letter</span>
+                            </div>
+                            <div class="requirement" id="req-number">
+                                <span class="requirement-icon">○</span>
+                                <span>One number</span>
+                            </div>
+                            <div class="requirement" id="req-special">
+                                <span class="requirement-icon">○</span>
+                                <span>One special character</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -355,7 +494,7 @@
     </footer>
 
     <script>
-        // Client-side validation
+        // Get form elements
         const form = document.getElementById('signupForm');
         const fullName = document.getElementById('fullName');
         const email = document.getElementById('email');
@@ -364,13 +503,133 @@
         const togglePassword = document.getElementById('togglePassword');
         const successMessage = document.getElementById('successMessage');
         
-        // Toggle password visibility
-        togglePassword.addEventListener('click', function() {
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-            this.textContent = type === 'password' ? 'Show' : 'Hide';
-        });
+        // Password strength elements
+        const strengthIndicator = document.getElementById('strengthIndicator');
+        const strengthFill = document.getElementById('strengthFill');
+        const strengthText = document.getElementById('strengthText');
+        const strengthLabel = document.getElementById('strengthLabel');
+        const strengthIcon = document.getElementById('strengthIcon');
+        const requirements = document.getElementById('requirements');
         
+        const reqLength = document.getElementById('req-length');
+        const reqUppercase = document.getElementById('req-uppercase');
+        const reqNumber = document.getElementById('req-number');
+        const reqSpecial = document.getElementById('req-special');
+
+        // Toggle password visibility - Fixed version
+        togglePassword.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Toggle clicked'); // Debug log
+            
+            if (password.getAttribute('type') === 'password') {
+                password.setAttribute('type', 'text');
+                this.textContent = 'Hide';
+            } else {
+                password.setAttribute('type', 'password');
+                this.textContent = 'Show';
+            }
+        });
+
+        // Password strength checker
+        password.addEventListener('input', function() {
+            const passwordValue = this.value;
+            
+            if (passwordValue.length === 0) {
+                hideStrengthIndicator();
+                return;
+            }
+            
+            showStrengthIndicator();
+            
+            // Check requirements
+            const hasLength = passwordValue.length >= 8;
+            const hasUppercase = /[A-Z]/.test(passwordValue);
+            const hasNumber = /[0-9]/.test(passwordValue);
+            const hasSpecial = /[!@#$%^&*()_+=[\]{}|;':",.\/<>?~`\-]/.test(passwordValue);
+            
+            // Update requirement indicators
+            updateRequirement(reqLength, hasLength);
+            updateRequirement(reqUppercase, hasUppercase);
+            updateRequirement(reqNumber, hasNumber);
+            updateRequirement(reqSpecial, hasSpecial);
+            
+            // Calculate strength
+            let strength = 0;
+            let strengthLevel = '';
+            let icon = '';
+            let width = 0;
+            
+            if (hasLength) strength += 25;
+            if (hasUppercase) strength += 25;
+            if (hasNumber) strength += 25;
+            if (hasSpecial) strength += 25;
+            
+            // Determine strength level
+            if (strength < 50) {
+                strengthLevel = 'weak';
+                strengthLabel.textContent = 'Weak';
+                icon = '🔓';
+                width = 25;
+            } else if (strength < 75) {
+                strengthLevel = 'moderate';
+                strengthLabel.textContent = 'Moderate';
+                icon = '🔐';
+                width = 50;
+            } else if (strength < 100) {
+                strengthLevel = 'strong';
+                strengthLabel.textContent = 'Strong';
+                icon = '🔒';
+                width = 75;
+            } else {
+                strengthLevel = 'very-strong';
+                strengthLabel.textContent = 'Very Strong';
+                icon = '🛡️';
+                width = 100;
+            }
+            
+            // Update visual elements
+            strengthFill.className = `strength-fill ${strengthLevel}`;
+            strengthFill.style.width = `${width}%`;
+            strengthText.className = `strength-text ${strengthLevel}`;
+            strengthIcon.textContent = icon;
+        });
+
+        password.addEventListener('focus', function() {
+            if (this.value.length > 0) {
+                showStrengthIndicator();
+            }
+        });
+
+        function showStrengthIndicator() {
+            strengthIndicator.classList.add('visible');
+            requirements.classList.add('visible');
+        }
+
+        function hideStrengthIndicator() {
+            strengthIndicator.classList.remove('visible');
+            requirements.classList.remove('visible');
+            strengthFill.style.width = '0%';
+            strengthFill.className = 'strength-fill';
+            strengthText.className = 'strength-text';
+            strengthLabel.textContent = 'Enter password';
+            strengthIcon.textContent = '🔒';
+        }
+
+        function updateRequirement(element, isMet) {
+            const icon = element.querySelector('.requirement-icon');
+            if (isMet) {
+                element.classList.add('met');
+                element.classList.remove('unmet');
+                icon.textContent = '✓';
+            } else {
+                element.classList.add('unmet');
+                element.classList.remove('met');
+                icon.textContent = '○';
+            }
+        }
+
         // Form submission
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -395,9 +654,8 @@
                 isValid = false;
             }
             
-            // Validate Password
+            // Validate Password (minimum 8 characters)
             if (password.value.length < 8) {
-                document.getElementById('passwordError').style.display = 'block';
                 isValid = false;
             }
             
@@ -408,25 +666,21 @@
             }
             
             if (isValid) {
-                // If all validations pass, submit the form data to the server
                 const formData = {
                     fullName: fullName.value,
                     email: email.value,
                     password: password.value
                 };
                 
-                // In a real implementation, you would send this data to your server
-                // For demonstration, simulate a successful signup
                 console.log('Form submitted successfully', formData);
                 
                 // Show success message
                 successMessage.style.display = 'block';
                 form.reset();
+                hideStrengthIndicator();
                 
                 // Simulate redirection after a delay
                 setTimeout(() => {
-                    // In a real app, redirect to login or dashboard
-                    // window.location.href = 'login.html';
                     alert('Signup successful! In a real app, you would be redirected to the login page.');
                 }, 3000);
             }
